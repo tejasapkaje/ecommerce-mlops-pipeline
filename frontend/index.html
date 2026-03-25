@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Purchase Predictor | Ultimate Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            margin: 0; min-height: 100vh;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0a0a0a);
+            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
+            display: flex; justify-content: center; align-items: center;
+            color: #ffffff; padding: 40px 20px;
+        }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+            padding: 40px; width: 100%; max-width: 1000px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 243, 255, 0.05);
+        }
+        
+        h2 { text-align: center; margin-top: 0; margin-bottom: 10px; font-weight: 600; text-shadow: 0 0 15px rgba(0, 243, 255, 0.5); }
+        .subtitle { text-align: center; color: #00f3ff; margin-bottom: 30px; font-size: 0.9em; }
+        
+        .section-title { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.2); margin: 20px 0 15px 0; padding-bottom: 5px; color: #a8b2d1; font-weight: 600; letter-spacing: 1px; }
+        
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        
+        .input-group { display: flex; flex-direction: column; }
+        label { margin-bottom: 8px; font-size: 0.85em; color: #d1d8e0; display: flex; align-items: center; gap: 8px; }
+        
+        input, select {
+            background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff; padding: 10px 15px; border-radius: 8px; outline: none; font-size: 0.95em; transition: all 0.3s ease;
+        }
+        input:focus, select:focus { border-color: #00f3ff; box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); background: rgba(0, 0, 0, 0.5); }
+        option { background: #24243e; color: #fff; }
+        
+        .btn-container { text-align: center; margin-top: 35px; }
+        button {
+            padding: 15px 40px; background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white; border: none; border-radius: 10px; font-size: 1.1em; font-weight: 600;
+            letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(0, 210, 255, 0.4); text-transform: uppercase;
+        }
+        button:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(0, 210, 255, 0.7); }
+
+        .loader-container { display: none; justify-content: center; align-items: center; flex-direction: column; margin-top: 25px; }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); border-left-color: #00f3ff; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loader-text { margin-top: 10px; font-size: 0.9em; color: #00f3ff; }
+
+        #result-box { margin-top: 25px; padding: 20px; border-radius: 12px; text-align: center; font-size: 1.2em; font-weight: 600; display: none; animation: popIn 0.5s ease-out; }
+        @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+        .success { background: rgba(0, 255, 136, 0.15); border: 1px solid #00ff88; color: #00ff88; box-shadow: 0 0 20px rgba(0, 255, 136, 0.2); }
+        .fail { background: rgba(255, 51, 102, 0.15); border: 1px solid #ff3366; color: #ff3366; box-shadow: 0 0 20px rgba(255, 51, 102, 0.2); }
+    </style>
+</head>
+<body>
+
+<div class="glass-card">
+    <h2>🤖 Enterprise AI Predictor</h2>
+    <div class="subtitle">Complete Data Entry for High-Accuracy Predictions</div>
+    
+    <div class="section-title">👤 Customer Demographics</div>
+    <div class="form-grid">
+        <div class="input-group">
+            <label>Age</label>
+            <input type="number" id="age" value="28" required>
+        </div>
+        <div class="input-group">
+            <label>Gender</label>
+            <select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select>
+        </div>
+        <div class="input-group">
+            <label>City</label>
+            <select id="city">
+                <option value="Mumbai">Mumbai</option><option value="Pune">Pune</option>
+                <option value="Delhi">Delhi</option><option value="Hyderabad">Hyderabad</option><option value="Bangalore">Bangalore</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Customer Segment</label>
+            <select id="customer_segment"><option value="Regular">Regular</option><option value="Occasional">Occasional</option><option value="Premium">Premium</option></select>
+        </div>
+        <div class="input-group">
+            <label>Return Customer?</label>
+            <select id="return_customer"><option value="1">Yes</option><option value="0">No</option></select>
+        </div>
+    </div>
+
+    <div class="section-title">👕 Product & Purchase Details</div>
+    <div class="form-grid">
+        <div class="input-group">
+            <label>Product Category</label>
+            <select id="category">
+                <option value="Jacket">Jacket</option><option value="Jeans">Jeans</option>
+                <option value="T-Shirt">T-Shirt</option><option value="Sweater">Sweater</option>
+                <option value="Shirt">Shirt</option><option value="Dress">Dress</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Brand</label>
+            <select id="brand">
+                <option value="Zara">Zara</option><option value="Puma">Puma</option><option value="H&M">H&M</option>
+                <option value="Levis">Levis</option><option value="Adidas">Adidas</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Season</label>
+            <select id="season"><option value="Summer">Summer</option><option value="Winter">Winter</option><option value="Monsoon">Monsoon</option></select>
+        </div>
+        <div class="input-group">
+            <label>Price (₹)</label>
+            <input type="number" id="price" value="2500" required>
+        </div>
+        <div class="input-group">
+            <label>Discount (%)</label>
+            <input type="number" id="discount" value="15" step="0.1" required>
+        </div>
+        <div class="input-group">
+            <label>Units Sold</label>
+            <input type="number" id="units_sold" value="1" required>
+        </div>
+    </div>
+
+    <div class="section-title">📦 Logistics & Feedback</div>
+    <div class="form-grid">
+        <div class="input-group">
+            <label>Payment Method</label>
+            <select id="payment_method">
+                <option value="Credit Card">Credit Card</option><option value="Debit Card">Debit Card</option>
+                <option value="UPI">UPI</option><option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Delivery Days</label>
+            <input type="number" id="delivery_days" value="3" required>
+        </div>
+        <div class="input-group">
+            <label>Stock Available?</label>
+            <select id="stock_available"><option value="1">In Stock</option><option value="0">Out of Stock</option></select>
+        </div>
+        <div class="input-group">
+            <label>Rating (1 to 5)</label>
+            <input type="number" id="rating" value="4.5" step="0.1" required>
+        </div>
+        <div class="input-group">
+            <label>Review Count</label>
+            <input type="number" id="review_count" value="120" required>
+        </div>
+        <div class="input-group">
+            <label>Days Since Last Purchase</label>
+            <input type="number" id="days_since_last_purchase" value="30" required>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <button onclick="predictPurchase()">Run AI Prediction ⚡</button>
+    </div>
+
+    <div class="loader-container" id="loader">
+        <div class="spinner"></div>
+        <div class="loader-text">AI is running probability models...</div>
+    </div>
+
+    <div id="result-box"></div>
+</div>
+
+<script>
+    function predictPurchase() {
+        const resultBox = document.getElementById('result-box');
+        const loader = document.getElementById('loader');
+        
+        resultBox.style.display = 'none';
+        loader.style.display = 'flex';
+
+        // Gathering ALL 17 Inputs dynamically from the input panel
+        const requestData = {
+            "age": parseInt(document.getElementById('age').value),
+            "gender": document.getElementById('gender').value,
+            "product_category": document.getElementById('category').value,
+            "brand": document.getElementById('brand').value,
+            "price": parseInt(document.getElementById('price').value),
+            "discount": parseFloat(document.getElementById('discount').value), 
+            "rating": parseFloat(document.getElementById('rating').value), 
+            "days_since_last_purchase": parseInt(document.getElementById('days_since_last_purchase').value),
+            "units_sold": parseInt(document.getElementById('units_sold').value), 
+            "customer_segment": document.getElementById('customer_segment').value, 
+            "payment_method": document.getElementById('payment_method').value,
+            "city": document.getElementById('city').value, 
+            "season": document.getElementById('season').value, 
+            "return_customer": parseInt(document.getElementById('return_customer').value), 
+            "delivery_days": parseInt(document.getElementById('delivery_days').value),
+            "stock_available": parseInt(document.getElementById('stock_available').value), 
+            "review_count": parseInt(document.getElementById('review_count').value)
+        };
+
+        setTimeout(() => {
+            fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                loader.style.display = 'none'; 
+                resultBox.style.display = 'block'; 
+                
+                if(data.prediction === 1) {
+                    resultBox.className = 'success';
+                    resultBox.innerHTML = `✅ HIGH INTENT <br> <span style="font-size:0.8em; font-weight:400;">Customer is highly likely to purchase.</span> <br> 🎯 Probability: ${data.purchase_probability}%`;
+                } else {
+                    resultBox.className = 'fail';
+                    resultBox.innerHTML = `❌ LOW INTENT <br> <span style="font-size:0.8em; font-weight:400;">Customer is unlikely to complete purchase.</span> <br> 🎯 Probability: ${data.purchase_probability}%`;
+                }
+            })
+            .catch(error => {
+                loader.style.display = 'none';
+                resultBox.style.display = 'block';
+                resultBox.className = 'fail';
+                resultBox.innerHTML = '⚠️ Connection Error! <br><span style="font-size:0.8em;">Is the Flask Backend running on port 5000?</span>';
+                console.error('Error:', error);
+            });
+        }, 1000); 
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Ignore virtual environment
+venv/
+__pycache__/
+
+# Ignore large datasets
+data/*.csv
+
+# Ignore heavy Machine Learning Models
+src/*.pkl
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
