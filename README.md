@@ -58,3 +58,30 @@ ecommerce_ml_pipeline/
 ├── .github/workflows/    # CI/CD Pipeline logic
 ├── auto_scheduler.py     # Background MLOps Daemon
 └── requirements.txt      # Python dependencies
+```
+---
+## 🚀 Installation & Setup
+
+1. **Clone the Repository:**
+   git clone [https://github.com/tejasapkaje/Enterprise-E-Commerce-AI-Predictor-MLOps-Pipeline.git](https://github.com/tejasapkaje/Enterprise-E-Commerce-AI-Predictor-MLOps-Pipeline.git)
+   cd Enterprise E-Commerce AI Predictor MLOps Pipeline
+3. **Set Up Virtual Environment:**
+   python -m venv venv
+   Windows:
+   .\venv\Scripts\activate
+4. **Install Dependencies:**
+   pip install -r requirements.txt
+5. **Database Setup:**
+   Install MongoDB Community Server.
+   Ensure it is running locally on port 27017.
+
+6. **Run the System:**
+   You need two terminals to run the complete architecture:
+
+   * Terminal 1: Start the Flask API
+   python `app/webapp.py` ``# Open frontend/index.html in your browser to access the UI.``
+
+   * Terminal 2: Start the MLOps Auto-Scheduler
+   python `auto_scheduler.py`
+
+## Built with ❤️ by an AI/ML Enthusiast & Data Engineer.
