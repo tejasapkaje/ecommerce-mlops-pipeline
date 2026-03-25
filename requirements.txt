@@ -1,23 +1,23 @@
 # Data Handling & Analysis
-pandas-3.0.1
-numpy-2.4.3
+pandas
+numpy
 
 # Machine Learning
-scikit-learn-1.8.0
+scikit-learn
 
 # Data Visualization (For EDA before PowerBI)
-matplotlib-3.10.8
-seaborn-0.13.2
+matplotlib
+seaborn
 
 # Notebooks for testing & building
-jupyter-1.1.1
+jupyter
 
 # Web Application Backend (For webapp.py)
-flask-3.1.3
-flask-cors-6.0.2
+flask
+flask-cors
 
 # Database for storing user data & model outputs
-pymongo-4.16.0
+pymongo
 
 # Task scheduling for regular model retraining
-schedule-1.2.2
+schedule
