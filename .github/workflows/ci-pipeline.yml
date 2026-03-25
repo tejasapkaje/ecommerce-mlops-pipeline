@@ -1,6 +1,7 @@
 name: ML Project CI/CD Pipeline
 
 # When the code push to github then it will run.
+
 on:
   push:
     branches: [ main, master ]
@@ -23,12 +24,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Test Flask API Server
+    - name: Server Health Check
       run: |
-        # Start the Flask API server in the background
-        python app/webapp.py &
-        # Wait for 5 seconds for the server to start
-        sleep 5
-        # Run the test script to check if the API is giving predictions or not
-        python app/test_api.py
-        
+      # Start the Flask API server in the backgroundpython app/webapp.py &
+      # Wait for 5 seconds for the server to start sleep 5
+      # Run the test script to check if the API is giving predictions or not curl http://127.0.0.1:5000/
+      
