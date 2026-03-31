@@ -6,7 +6,7 @@
 ![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen.svg)
 ![PowerBI](https://img.shields.io/badge/Analytics-PowerBI-yellow.svg)
 
-An end-to-end, production-ready Machine Learning system designed to predict customer purchase intent. This project evolves from a standard ML model into a complete **MLOps architecture**, featuring a continuous data feedback loop, automated model retraining & a dynamic real-time dashboard.
+An end-to-end & production-ready Machine Learning system designed to predict customer purchase intent. This project evolves from a standard ML model into a complete **MLOps architecture**, featuring a continuous data feedback loop, automated model retraining & a dynamic real-time dashboard.
 
 ---
 
