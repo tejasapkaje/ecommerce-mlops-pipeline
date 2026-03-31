@@ -33,7 +33,7 @@ def run_retraining():
 # schedule.every().day.at("00:00").do(run_retraining)
 
 # Option C: Run every Sunday at 2 AM
-# schedule.every().sunday.at("02:00").do(run_retraining)
+schedule.every().sunday.at("02:00").do(run_retraining)
 
 print("🤖 Auto-Scheduler Bot is now running in the background...")
 print("⏳ Waiting for the scheduled time. Press CTRL+C to stop this bot.")
