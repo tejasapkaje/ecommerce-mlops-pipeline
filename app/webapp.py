@@ -30,8 +30,20 @@ except Exception as e:
     print(f"❌ Error connecting to MongoDB: {e}")
 
 # Cloud Link Or Local Link (Taken from Render Environment Variables)
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://tejasapkaje2729_db_user:JPRUPUFLszyjvwZ@cluster0.kcxi9pg.mongodb.net/?appName=Cluster0')
-client = MongoClient(MONGO_URI)
+
+from pymongo.mongo_client import MongoClient
+
+uri = "mongodb+srv://admin:admin123@cluster0.kcxi9pg.mongodb.net/?appName=Cluster0"
+
+# Create a new client and connect to the server
+client = MongoClient(uri)
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
 
 # 2. Load the Model and Encoders
 try:
