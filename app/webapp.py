@@ -29,6 +29,10 @@ try:
 except Exception as e:
     print(f"❌ Error connecting to MongoDB: {e}")
 
+# Cloud Link Or Local Link (Taken from Render Environment Variables)
+MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://tejasapkaje2729_db_user:JPRUPUFLszyjvwZ@cluster0.kcxi9pg.mongodb.net/?appName=Cluster0')
+client = MongoClient(MONGO_URI)
+
 # 2. Load the Model and Encoders
 try:
     model = joblib.load(os.path.join(SRC_DIR, 'random_forest_model_tuned.pkl'))
