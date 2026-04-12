@@ -21,5 +21,3 @@ pymongo
 
 # Task scheduling for regular model retraining
 schedule
-
-gunicorn
